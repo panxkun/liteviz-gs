@@ -1,0 +1,9 @@
+*~
+
+imgui.ini
+*.ply
+.vscode
+build
+run.sh
+
+external
