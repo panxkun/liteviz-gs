@@ -61,6 +61,7 @@ target_link_libraries(liteviz
     dl
     imgui
     tinyply
+    tbb
 )
 
 add_executable(liteviz_viewer app/main.cpp)

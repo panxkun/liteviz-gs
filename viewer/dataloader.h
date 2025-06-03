@@ -2,6 +2,7 @@
 
 #include <string>
 #include <vector>
+#include <tbb/parallel_sort.h>
 #include <Eigen/Dense>
 #include <tinyply.h>
 #include "utils.h"
@@ -165,10 +166,14 @@ std::vector<int> sort(const GaussianData& data, const Eigen::Matrix4f& P) {
         depth_index[i] = static_cast<int>(i);
     }
 
-    std::sort(depth_index.begin(), depth_index.end(),
-              [&](int i, int j) {
-                  return depths[i] < depths[j];
-              });
+    // std::sort(depth_index.begin(), depth_index.end(),
+    //           [&](int i, int j) {
+    //               return depths[i] < depths[j];
+    //           });
 
+    tbb::parallel_sort(depth_index.begin(), depth_index.end(),
+                    [&](int i, int j) {
+                        return depths[i] < depths[j];
+                    });
     return depth_index;
 }

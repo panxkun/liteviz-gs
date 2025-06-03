@@ -134,7 +134,7 @@ public:
         Eigen::Matrix3f R = Eigen::Matrix3f::Identity();
         R.col(0) = xAxis;
         R.col(1) = yAxis;
-        R.col(2) = -zAxis;
+        R.col(2) = zAxis;
         
         Eigen::Matrix4f transform = Eigen::Matrix4f::Identity();
         transform.block<3, 3>(0, 0) = R;
