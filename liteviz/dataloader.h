@@ -1,11 +1,11 @@
-#pragma once
+#ifndef __DATALOADER_H__
+#define __DATALOADER_H__
 
 #include <string>
 #include <vector>
 #include <tbb/parallel_sort.h>
 #include <Eigen/Dense>
 #include <tinyply.h>
-#include "utils.h"
 
 using namespace tinyply;
 
@@ -177,3 +177,5 @@ std::vector<int> sort(const GaussianData& data, const Eigen::Matrix4f& P) {
                     });
     return depth_index;
 }
+
+#endif // __DATALOADER_H__

@@ -1,0 +1,5 @@
+if(NOT TARGET depends::tbb)
+  find_package(TBB REQUIRED)
+  add_library(depends::tbb INTERFACE IMPORTED GLOBAL)
+  target_link_libraries(depends::tbb INTERFACE TBB::tbb)
+endif()

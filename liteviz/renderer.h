@@ -1,9 +1,11 @@
 #ifndef __RENDERER_H__
 #define __RENDERER_H__
 
-#include "dataloader.h"
-#include "viewport.h"
-#include "utils.h"
+#include <liteviz/dataloader.h>
+#include <liteviz/viewport.h>
+#include <liteviz/utils.h>
+#include <liteviz/shader.h>
+
 
 struct RenderConfig{
     

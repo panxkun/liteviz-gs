@@ -1,5 +1,5 @@
-#include "viewer.h"
-#include "dataloader.h"
+#include <liteviz/viewer.h>
+#include <liteviz/dataloader.h>
 
 int main(int argc, char** argv) {
 

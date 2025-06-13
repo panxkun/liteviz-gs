@@ -9,10 +9,10 @@
 #include <backends/imgui_impl_opengl3.h>
 #include <iostream>
 #include <chrono>
-#include "shader.h"
-#include "dataloader.h"
-#include "viewport.h"
-#include "renderer.h"
+#include <liteviz/shader.h>
+#include <liteviz/dataloader.h>
+#include <liteviz/viewport.h>
+#include <liteviz/renderer.h>
     
 class LiteViewer{
 
@@ -106,7 +106,7 @@ public:
         ImGui_ImplOpenGL3_Init(glsl_version);
 
         // Set Fonts
-        std::string font_path = "./viewer/assets/JetBrainsMono-Regular.ttf";
+        std::string font_path = std::string(RESOURCE_DIR) + "/liteviz/assets/JetBrainsMono-Regular.ttf";
         io.Fonts->AddFontFromFileTTF(font_path.c_str(), 14.0f);
 
         // Set Windows option
@@ -276,8 +276,13 @@ public:
             return;
         }
 
+        std::string shader_path = std::string(RESOURCE_DIR) + "/liteviz/shaders";
+
         std::shared_ptr<Shader> splatShader = std::make_shared<Shader>(
-            "./viewer/shaders/draw_splat.vert", "./viewer/shaders/draw_splat.frag", false);
+            (shader_path + "/draw_splat.vert").c_str(),
+            (shader_path + "/draw_splat.frag").c_str(),
+            false
+        );
 
         Renderer renderer(data, splatShader.get());
 
