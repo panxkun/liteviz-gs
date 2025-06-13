@@ -26,18 +26,6 @@
 ### Prerequisites
 - C++17 or later
 - CMake 3.10+
-- OpenGL
-- [GLFW](https://www.glfw.org/)
-- [ImGui](https://github.com/ocornut/imgui)
-- [tinyply](https://github.com/ddiakopoulos/tinyply)
-
-The project uses the following libraries, which are included in the `external` directory:
-```bash
-├──external/
-   ├── imgui/
-   ├── glad/
-   └── tinyply/
-```
 
 ### Build && Running
 
@@ -48,5 +36,5 @@ mkdir build && cd build
 cmake ..
 make -j8
 
-./build/liteviz_viewer /path/to/.ply/file
+./build/viewer /path/to/.ply/file
 ```
