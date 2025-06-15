@@ -98,7 +98,7 @@ public:
         io.ConfigWindowsMoveFromTitleBarOnly = true;
 
         // Setup Dear ImGui style
-        ImGui::StyleColorsDark();
+        ImGui::StyleColorsLight();
 
         // Setup Platform/Renderer backends
         const char* glsl_version = "#version 400";
@@ -112,13 +112,12 @@ public:
         // Set Windows option
         window_flags |= ImGuiWindowFlags_NoScrollbar;
         window_flags |= ImGuiWindowFlags_NoResize;
-        // window_flags |= ImGuiWindowFlags_NoBackground;
 
         ImGui::PushStyleVar(ImGuiStyleVar_FrameRounding, 2.0f);
 
         ImGuiStyle& style = ImGui::GetStyle();
         style.WindowTitleAlign = ImVec2(0.5f, 0.5f);
-        style.WindowPadding = ImVec2(0.0f, 6.0f);
+        style.WindowPadding = ImVec2(6.0f, 6.0f);
         style.WindowRounding = 6.0f;
         style.WindowBorderSize = 0.0f;
 
@@ -211,7 +210,7 @@ public:
 
         any_window_active = ImGui::IsAnyItemActive() ;
 
-        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.1f, 0.1f, 0.1f, 0.3f));
+        ImGui::PushStyleColor(ImGuiCol_WindowBg, ImVec4(0.5f, 0.5f, 0.5f, 0.8f));
         ImGui::Begin("Configuration", nullptr,  window_flags); 
         ImGui::SetWindowSize(ImVec2(300, 0));
 
@@ -225,22 +224,22 @@ public:
             "                 SURFEL"
         };
         static int current_item = config.render_mode;
-        ImGui::SetNextItemWidth(300.0f);
+        ImGui::SetNextItemWidth(-1);
         if (ImGui::Combo("##render_mode", &current_item, mode_items, 7)) {
             config.render_mode = static_cast<RenderConfig::RenderMode>(current_item);
         }
 
-        ImGui::SetNextItemWidth(200.0f);
+        ImGui::SetNextItemWidth(190);
         ImGui::SliderFloat("##scale_slider", &config.scale_modifier, 0.01f, 3.0f, "Scale=%.2f");
         ImGui::SameLine();
-        ImGui::SetNextItemWidth(85.0f);
+        ImGui::SetNextItemWidth(80.0f);
         if (ImGui::Button("Reset##scale", ImVec2(85.0f, 0.0f))) {
             config.scale_modifier = 1.0f;
         }
-        ImGui::SetNextItemWidth(200.0f);
+        ImGui::SetNextItemWidth(190);
         ImGui::SliderFloat("##fov_slider", &config.fov, 10.0f, 120.0f, "FoV=%.1f");
         ImGui::SameLine();
-        ImGui::SetNextItemWidth(85.0f);
+        ImGui::SetNextItemWidth(80.0f);
         if (ImGui::Button("Reset##fov", ImVec2(85.0f, 0.0f))) {
             config.fov = 60.0f;
         }
@@ -248,8 +247,6 @@ public:
 
         ImGui::Checkbox("Vertical Synch.", &config.vsync);
         ImGui::Checkbox("Depth Sort", &config.depth_sort);
-
-        ImGui::ColorEdit4("Background", (float*)&clearColor);
 
         ImGui::Separator();
         ImGui::Text("Primitive Count: %zu", config.num_primitives);
